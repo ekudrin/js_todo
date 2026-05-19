@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do Лист</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .todo-text {
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+
+        .btn {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To-Do Лист</h1>
+    <input type="text" id="new-todo" placeholder="Новая задача">
+    <button onclick="addTodo()">Добавить</button>
+    <ul id="todo-list"></ul>
+
+    <script src="todo.js"></script>
+</body>
+
+</html>
