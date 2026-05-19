@@ -3,9 +3,9 @@ const todoList = document.getElementById('todo-list')
 const newToDoInput = document.getElementById('new-todo')
 
 //Загрузка списка задач
-function loadTodos() {
-    const res = fetch('/api/todos')
-    todos = res.json()
+async function loadTodos() {
+    const res = await fetch('/api/todos')
+    todos = await res.json()
     renderTodos()
 }
 
@@ -16,7 +16,7 @@ function renderTodos() {
         const li = document.createElement('li')
         li.className = 'todo-item'
         li.innerHTML = `
-        <span class="todo-text" contenteditable="true" data-id="${todo.id}">
+        <span class="todo-text" contenteditable="true" data-id="${todo.id}">${todo.text}</span>
         <button class="btn" onclick="editTodo(${todo.id})">Обновить</button>
         <button class="btn" onclick="deleteTodo(${todo.id})">Удалить</button>     
         `
@@ -25,24 +25,24 @@ function renderTodos() {
 }
 
 //Добавление новой задачи
-function addTodo() {
+async function addTodo() {
     const text = newToDoInput.value.trim()
     if (!text) return;
-    const res = fetch('/api/todos', {
+    const res = await fetch('/api/todos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
     })
-    const newTodo = res.json()
+    const newTodo = await res.json()
     todos.push(newTodo)
     renderTodos()
     newToDoInput.value = ''
 }
 
 //Редактирование задачи
-function editTodo(id) {
+async function editTodo(id) {
     const text = document.querySelector(`.todo-text[data-id="${id}"]`).innerText
-    fetch(`/api/todos/${id}`, {
+    await fetch(`/api/todos/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
@@ -51,8 +51,8 @@ function editTodo(id) {
 }
 
 //Удаление задачи
-function deleteTodo(id) {
-    fetch(`/api/todos/${id}`, { method: 'DELETE' })
+async function deleteTodo(id) {
+    await fetch(`/api/todos/${id}`, { method: 'DELETE' })
     todos = todos.filter(t => t.id !== id)
     renderTodos()
 }

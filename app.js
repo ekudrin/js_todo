@@ -19,7 +19,7 @@ app.use(express.static(__dirname))
 //Получить список задач
 app.get('/api/todos', (req, res) => {
     const data = fs.readFileSync(DATA_FILE, 'utf-8')
-    res.json()
+    res.json(JSON.parse(data))
 })
 
 
