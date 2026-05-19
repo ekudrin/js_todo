@@ -1,0 +1,12 @@
+{
+    "name": "js-todo",
+    "version": "1.0.0",
+    "description": "To Do лист",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "^4.19.2"
+    }
+}
