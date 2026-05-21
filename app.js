@@ -48,7 +48,7 @@ app.put('/api/todos/:id', (req, res) => {
 
 //Удалить задачу
 app.delete('/api/todos/:id', (req, res) => {
-    const tods = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'))
+    const todos = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'))
     const newTodos = todos.filter(t => t.id != req.params.id);
     fs.writeFileSync(DATA_FILE, JSON.stringify(newTodos, null, 2))
     res.json({ success: true })
