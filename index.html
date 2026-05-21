@@ -5,33 +5,135 @@
     <meta charset="UTF-8">
     <title>To-Do Лист</title>
     <style>
+        /* Основные стили страницы */
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
         }
 
+        /* Стили для заголовка H1 */
+        h1 {
+            text-align: center;
+            /* Центрируем заголовок */
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        /* Стили для списка задач */
+        ul#todo-list {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            max-width: 500px;
+            /* Ограничиваем ширину списка */
+        }
+
+        /* Стили для каждого элемента списка */
         .todo-item {
             display: flex;
             align-items: center;
-            margin: 5px 0;
+            background-color: #fff;
+            border: 2px solid #3498db;
+            /* Синяя граница */
+            border-radius: 12px;
+            /* Закругление углов */
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
+        /* Стили для текста задачи (редактируемый) */
         .todo-text {
             flex-grow: 1;
-            margin: 0 10px;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            min-height: 30px;
+            /* Чтобы текст не прыгал */
+            outline: none;
+            /* Убираем рамку при фокусе */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
 
+        /* Стили для текста задачи, когда он редактируется (в фокусе) */
+        .todo-text:focus {
+            white-space: normal;
+            /* Разрешаем перенос строк */
+            overflow: visible;
+            /* Показываем всё содержимое */
+            text-overflow: clip;
+            /* Убираем троеточие */
+        }
+
+        /* Стили для кнопок */
         .btn {
-            margin-left: 5px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            /* Сильно закругленные кнопки */
+            font-weight: bold;
             cursor: pointer;
+            border: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            /* Анимация при наведении */
+        }
+
+        /* Кнопка "Добавить" (Синяя) */
+        .btn-add {
+            background-color: #3498db;
+            /* Синий */
+            color: white;
+            margin-top: 12px; 
+        }
+
+        /* Кнопка "Сохранить" (Зеленая) */
+        .btn-save {
+            background-color: #27ae60;
+            /* Зеленый */
+            color: white;
+        }
+
+        /* Кнопка "Удалить" (Красная) */
+        .btn-delete {
+            background-color: #e74c3c;
+            /* Красный */
+            color: white;
+        }
+
+        /* Инпут для новой задачи */
+        #new-todo {
+            width: calc(100% - 22px);
+            /* Ширина почти на всю ширину, с учетом паддинга кнопки */
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #bdc3c7;
+            text-align: center;
+            /* Текст по центру */
+            font-size: 1rem;
+        }
+
+        /* Анимация при наведении на кнопки */
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 
 <body>
-    <h1>To-Do Лист</h1>
+    <h1>📝 To-Do Лист</h1>
     <input type="text" id="new-todo" placeholder="Новая задача">
-    <button onclick="addTodo()">Добавить</button>
+    <button class="btn btn-add" onclick="addTodo()">Добавить</button>
     <ul id="todo-list"></ul>
 
     <script src="todo.js"></script>

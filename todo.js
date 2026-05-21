@@ -17,8 +17,8 @@ function renderTodos() {
         li.className = 'todo-item'
         li.innerHTML = `
         <span class="todo-text" contenteditable="true" data-id="${todo.id}">${todo.text}</span>
-        <button class="btn" onclick="editTodo(${todo.id})">Обновить</button>
-        <button class="btn" onclick="deleteTodo(${todo.id})">Удалить</button>     
+        <button class="btn btn-save" onclick="editTodo(${todo.id})">Обновить</button>
+        <button class="btn btn-delete" onclick="deleteTodo(${todo.id})">Удалить</button>     
         `
         todoList.appendChild(li)
     })
